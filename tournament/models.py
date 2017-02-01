@@ -41,7 +41,7 @@ class Match(models.Model):
 
 class TeamReport(models.Model):
     match = models.ForeignKey("Match",related_name="team_reports")
-    Coach = models.ForeignKey("Coach", related_name="report")
+    coach = models.ForeignKey("Coach", related_name="report")
     is_winner = models.BooleanField(default=False)
     is_draw = models.BooleanField(default=False)
     is_loser = models.BooleanField(default=False)
