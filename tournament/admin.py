@@ -46,6 +46,7 @@ class TeamReportPageAdmin(admin.ModelAdmin):
     list_editable = ('TD','sorties','passes','interceptions','aggros')
     list_filter = ('match__ronde',)
     search_fields = ['coach__name','match__ronde']
+    list_per_page = 10
 
     # fonction appelée à chaque sauvegarde d'objet TeamReport
     def save_model(self, request, obj, form, change):
@@ -72,9 +73,28 @@ class MyAdminSite(AdminSite):
 
     @never_cache
     def index(self, request, extra_context=None):
-        coach_list = Coach.objects.all().order_by('-points')
+
+        matchs = TeamReport.objects.all()
+        ronde_1_drawn = TeamReport.objects.filter(match__ronde=1).count() > 0
+
+        #la ronde est finie si tout les rapports de matchs sont remplis
+        ronde_is_finished = TeamReport.objects.filter(TD__isnull=True).count() == 0
+
+        #la ronde est commencé si le nombre de rapport non remplis est inférieur au nombre de coach
+        ronde_not_started = TeamReport.objects.filter(TD__isnull=True).count() == Coach.objects.all().count()
+        ronde_2_drawn = TeamReport.objects.filter(match__ronde=2).count() > 0
+        ronde_3_drawn = TeamReport.objects.filter(match__ronde=3).count() > 0
+        ronde_4_drawn = TeamReport.objects.filter(match__ronde=4).count() > 0
+        ronde_5_drawn = TeamReport.objects.filter(match__ronde=5).count() > 0
         context = {
-            'coach_list': coach_list,
+            'match_list': matchs,
+            'ronde_1_drawn':ronde_1_drawn,
+            'ronde_2_drawn':ronde_2_drawn,
+            'ronde_3_drawn':ronde_3_drawn,
+            'ronde_4_drawn':ronde_4_drawn,
+            'ronde_5_drawn':ronde_5_drawn,
+            'ronde_finished':ronde_is_finished,
+            'ronde_not_started':ronde_not_started
         }
         return super().index(request, extra_context=context)
 
@@ -82,7 +102,6 @@ admin.site = MyAdminSite()
 admin.autodiscover()
 
 # Register your models here.
-#admin.site.index_template = "admin/index.html"
 admin.site.register(Coach,CoachPageAdmin)
 admin.site.register(League,LeaguePageAdmin)
 admin.site.register(Match,MatchPageAdmin)
