@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^match/(?P<match_id>[0-9]+)/$', views.match, name='match'),
 ]

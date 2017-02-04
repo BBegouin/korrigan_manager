@@ -1,0 +1,91 @@
+
+.content {
+    /*background-image: url(../imgs/background.jpg);*/
+    background-attachment:fixed;
+    background-position: left up;
+    background-size: contain;
+}
+
+.panel {
+    background-color: rgba(255,255,255,0.9);
+    
+    border-width: 1px;
+    border-style: solid;
+    border-color: #E1E5EC;
+    padding: 0rem;
+    margin: 1rem 0rem 1rem 0rem; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24);
+}
+
+.panel-title {
+    width: 100%;
+    padding: 1rem 0.5rem 0.5rem 0.5rem  ;
+    text-align: center;
+    font-weight: 200;
+    font-size: 1.3rem; 
+}
+
+.panel-footer {
+    width: 100%;
+    padding: 0rem 0.5rem 0.5rem 0.5rem  ;
+    text-align: center;
+    font-weight: 200;
+    font-size: 1.3rem; 
+}
+
+.left {
+    margin: 0;
+    padding: 0rem 0.5rem 0rem 0rem ;
+}
+
+.right {
+    margin: 0;
+    padding: 0rem 0rem 0rem 0.5rem ;
+}
+
+.top{
+    padding-top: 0.25rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
+}
+
+.full {
+ padding-top: 0.25rem;   
+}
+
+.panel-content {
+    padding: 1rem 1rem;
+    overflow: inherit;
+}
+
+.panel h6{
+    margin-bottom: 1rem;
+}
+
+.panel hr {
+    margin : 1rem 0rem;   
+}
+
+.panel-title hr {
+    padding-bottom: 0rem;
+    margin-bottom: 0rem;
+}
+
+.panel-footer hr {
+    padding-top: 0;
+    margin : 0rem 0rem 1rem 0rem;  
+}
+
+.login-error {
+    text-align: center;
+    color: #CC0000;
+}
+
+
+.clear {
+    clear:both;
+}
+
+.thumb-title {
+    text-align: center
+}

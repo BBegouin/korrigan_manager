@@ -1,0 +1,44 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+{% if match_list %}
+    <table id="ronde1">
+        <caption>
+            <a href="{{ app.app_url }}" class="section">Appariement de la ronde 1 :</a>
+        </caption>
+            <thead>
+            <tr>
+                <th>Table</th>
+                <th>Coach</th>
+            </tr>
+            </thead>
+            {% for match in match_list %}
+            <tr class="model-">
+                <td rowspan="2"><a href="{% url 'admin_ronde1' %}">table {{ match.table }}</a></td>
+                <td ><a href="{% url 'admin_ronde1' %}">{{ match.team_reports.first.coach.name }}</a></td>
+            </tr>
+            <tr>
+                <td ><a href="{% url 'admin_ronde1' %}">{{ match.team_reports.last.coach.name }}</a></td>
+            </tr>
+            {% endfor %}
+    </table>
+    </div>
+{% else %}
+    <button> Tirer la ronde </button>
+{% endif %}
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

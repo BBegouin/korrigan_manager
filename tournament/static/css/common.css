@@ -1,0 +1,128 @@
+ /* Ré-équilibrage du Rem face au Pixel pour des calculs simples */
+/*html {
+    font-size: 62.5%;
+}*/
+
+body {
+    background-color: #E9EBEE;
+}
+
+html {
+    font-family: 'Open Sans', sans-serif;
+}
+
+button {
+    border-radius: 2px;
+    background-color: #4B77BE;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    color: #ffffff;
+    transition: background-color 0.5s;
+}
+
+button:hover {
+    background-color: #5C9BD1;
+}
+
+a{
+    color: #003399;
+}
+
+a.small-link {
+     font-size: 0.8rem;
+}
+.text-centered {
+    text-align: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+i {
+    margin-left: 0.2rem;
+    margin-right: 0.5rem;
+}
+
+button.light-grey-button{
+    background-color: #BFCAD1;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+button.light-grey-button:hover{
+    background-color: #E9EDEF;
+    color: #2C3E50;
+}
+
+button.alert {
+    background-color: #D05454;
+    transition: background-color 0.5s, color 0.5s;
+    color: #ffffff;
+}
+
+button.alert:hover{
+    background-color: #E43A45;
+    color: #ffffff;
+}
+
+/* Colors */
+
+.grey-steel {
+    background-color: #E9EDEF;
+}
+
+.grey-salt{
+    background-color: #BFCAD1;
+}
+
+.default{
+    background-color: #E1E5EC
+}
+
+.dark{
+    background-color: #eaeaea
+}
+
+.facebook-blue{
+    background-color: #3C5899;
+}
+
+
+.image-centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-left {
+    padding-left: 0.5rem;
+    text-align: left;
+}
+
+
+.bottom-link {
+    font-size: 1rem;
+    float: right;
+}
+.footer {
+    font-size: 0.6em;
+    padding:0rem;
+    margin: 0rem;
+}
+
+ul.pagination {
+    background-color: #ffffff;
+}
+
+div.pagination-centered {
+    
+}
+
+.modal-title {
+    background-color: #E9EDEF;
+    font-size : 1.8rem;
+}
+
+.modal-text {
+    font-size : 1.3rem;
+    font-weight: 200;
+}

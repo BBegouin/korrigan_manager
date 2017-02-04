@@ -9,6 +9,9 @@ def shuffled_query_set(query_set):
 
 
 def draw_round_1():
+    print ("===================================")
+    print ("========== Tirage ronde 1 =========")
+    print ("===================================")
     # tirage des rondes
     # si il s'agit de la ronde 1 :
     # pour chaque adversaire on tire un adversaire au sort sachant que :
@@ -19,7 +22,6 @@ def draw_round_1():
     # - on fait un chapeau tête de série
     # - on fait un chapeau de ligue, chaque ligue contenant les joueurs de la ligue
     shuffled_head_coachs = shuffled_query_set(Coach.objects.filter(head = True))
-    print (shuffled_head_coachs)
 
     table = 1
     #un adversaire ne peut pas être choisi deux fois
@@ -85,9 +87,56 @@ def draw_round_1():
         table+=1
 
 def draw_next_round():
-    pass
+
+    print ("===================================")
+    print ("====== Tirage ronde suivante ======")
+    print ("===================================")
     #on choppe la liste des coachs, ordonnée par point
-    #pour chaque coach, on choppe le premier adevrsaire éligible, celui qui n'est pas de la même ligue
+    coach_ranking = Coach.objects.all().order_by('-points')
+
+    foe_list = []
+    table = 1
+
+    #pour chaque coach, on choppe le premier adversaire éligible,
+    for coach in coach_ranking:
+
+        #si le coach est dans la liste des coachs appariés, on continue
+        if coach in foe_list:
+            continue
+
+        foe_list.append(coach)
+        # celui qui à le nombre de point juste en dessous, qui n'est pas de la même ligue,
+        # et qui n'est pas déjà apparié
+        foe = Coach.objects.filter(points__lte=coach.points)\
+                            .exclude(league=coach.league)\
+                            .exclude(Q(id__in=[f.id for f in foe_list]))\
+                            .order_by('-points').first()
+
+        #si on en trouve pas, on prend deux joueurs de la même ligue
+        if foe == None:
+            foe = Coach.objects.filter(points__lte=coach.points)\
+                            .exclude(Q(id__in=[f.id for f in foe_list]))\
+                            .order_by('-points').first()
+
+        #si on en trouve toujours pas, alors on sort
+        if foe == None:
+            break
+
+        create_match(ronde=2,
+                     table=table,
+                     coach1=coach,
+                     coach2=foe)
+
+        #on stocke le coach ayant déjà joué
+        foe_list.append(foe)
+
+        # on imprime la sortie
+        print("table "+repr(table)+" : "+coach.name+" Vs "+foe.name)
+        table +=1
+
+
+
+
 
 #
 # on renvoie au hasard une ligue qui n'est pas dans la liste interdite
