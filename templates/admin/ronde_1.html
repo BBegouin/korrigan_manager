@@ -23,11 +23,11 @@
             </thead>
             {% for match in match_list %}
             <tr class="model-">
-                <td rowspan="2"><a href="{% url 'admin_ronde1' %}">table {{ match.table }}</a></td>
-                <td ><a href="{% url 'admin_ronde1' %}">{{ match.team_reports.first.coach.name }}</a></td>
+                <td rowspan="2"><a href="{% url 'admin_view_ronde' ronde_id=1%}">table {{ match.table }}</a></td>
+                <td ><a href="{% url 'admin_view_ronde' ronde_id=1%}">{{ match.team_reports.first.coach.name }}</a></td>
             </tr>
             <tr>
-                <td ><a href="{% url 'admin_ronde1' %}">{{ match.team_reports.last.coach.name }}</a></td>
+                <td ><a href="{% url 'admin_view_ronde' ronde_id=1%}">{{ match.team_reports.last.coach.name }}</a></td>
             </tr>
             {% endfor %}
     </table>

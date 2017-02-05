@@ -86,7 +86,10 @@ def draw_round_1():
 
         table+=1
 
-def draw_next_round():
+#
+# ronde : le numéro de la ronde à tirer
+#
+def draw_next_round(ronde):
 
     print ("===================================")
     print ("====== Tirage ronde suivante ======")
@@ -122,7 +125,7 @@ def draw_next_round():
         if foe == None:
             break
 
-        create_match(ronde=2,
+        create_match(ronde=ronde,
                      table=table,
                      coach1=coach,
                      coach2=foe)
@@ -134,7 +137,12 @@ def draw_next_round():
         print("table "+repr(table)+" : "+coach.name+" Vs "+foe.name)
         table +=1
 
-
+#
+# Annulation de la ronde :
+# On supprime les matchs et les rapports associés
+#
+def cancel_ronde(ronde_id):
+    Match.objects.filter(ronde = ronde_id).delete()
 
 
 

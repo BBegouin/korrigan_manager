@@ -12,6 +12,10 @@
 
 {% block breadcrumbs %}{% endblock %}
 
+{% block extrahead %}
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+{% endblock %}
+
 {% block content %}
 
 <div id="content-main">
@@ -52,26 +56,26 @@
             <a href="{{ app.app_url }}" class="section">Appariement des rondes</a>
         </caption>
             <tr class="model-">
-                <th scope="row"><a href="{% url 'admin_ronde1' %}">ronde 1</a></th>
+                <th scope="row"><a href="{% url 'admin_view_ronde' ronde_id=1%}">ronde 1</a></th>
                 {% if ronde_1_drawn %}
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Consulter' %}</a></td>
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
+                    <td><a href="{% url 'admin_view_ronde' ronde_id=1%}" class="viewsitelink">{% trans 'Consulter' %}</a></td>
+                    <td><a href="{% url 'export_xls_ronde' ronde_id=1%}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
                     {% if ronde_not_started %}
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Re-Tirer' %}</a></td>
+                    <td><a href="" class="viewsitelink" id="draw_ronde_1">{% trans 'Re-Tirer' %}</a></td>
                     {% else %}
                     <td></td>
                     {% endif %}
                 {% else %}
                     <td></td>
                     <td></td>
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Tirer' %}</a></td>
+                    <td><a href="" class="viewsitelink" id="draw_ronde_1">{% trans 'Tirer' %}</a></td>
                 {% endif %}
             </tr>
             <tr class="model-">
                 <th scope="row"><a href="">ronde 2</a></th>
                  {% if ronde_2_drawn %}
                     <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Consulter' %}</a></td>
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
+                    <td><a href="{% url 'export_xls_ronde' ronde_id=2%}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
                      {% if ronde_not_started %}
                     <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Re-Tirer' %}</a></td>
                     {% else %}
@@ -91,7 +95,7 @@
                 <th scope="row"><a href="">ronde 3</a></th>
                 {% if ronde_3_drawn %}
                     <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Consulter' %}</a></td>
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
+                    <td><a href="{% url 'export_xls_ronde' ronde_id=3%}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
                     {% if ronde_not_started %}
                     <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Re-Tirer' %}</a></td>
                     {% else %}
@@ -111,7 +115,7 @@
                 <th scope="row"><a href="">ronde 4</a></th>
                 {% if ronde_4_drawn %}
                     <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Consulter' %}</a></td>
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
+                    <td><a href="{% url 'export_xls_ronde' ronde_id=4%}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
                     {% if ronde_not_started %}
                     <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Re-Tirer' %}</a></td>
                     {% else %}
@@ -131,7 +135,7 @@
                 <th scope="row"><a href="">ronde 5</a></th>
                 {% if ronde_5_drawn %}
                     <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Consulter' %}</a></td>
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
+                    <td><a href="{% url 'export_xls_ronde' ronde_id=5%}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
                     <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Supprimer' %}</a></td>
                     {% if ronde_not_started %}
                     <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Re-Tirer' %}</a></td>
@@ -186,4 +190,16 @@
             {% endif %}
     </div>
 </div>
+{% endblock %}
+{% block footer %}
+    <script>
+    $(document).ready()
+    $(function(){
+         $('#draw_ronde_1').click( function(){
+             $.ajax({
+                url: '{% url "admin_draw_ronde"  ronde_id=1 %}',
+              });
+         });
+    });
+    </script>
 {% endblock %}

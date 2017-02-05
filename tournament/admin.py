@@ -4,6 +4,7 @@ from django.contrib.admin import AdminSite
 from django.utils.translation import ugettext_lazy
 from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
+from django_admin_listfilter_dropdown.filters import DropdownFilter, RelatedDropdownFilter
 
 class CoachPageAdmin(admin.ModelAdmin):
     list_display = ['name',
@@ -44,7 +45,8 @@ class TeamReportPageAdmin(admin.ModelAdmin):
                     'points']
 
     list_editable = ('TD','sorties','passes','interceptions','aggros')
-    list_filter = ('match__ronde',)
+    list_filter = ('match__ronde',('match__table', DropdownFilter),)
+
     search_fields = ['coach__name','match__ronde']
     list_per_page = 10
 
