@@ -31,41 +31,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="prod_settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/korrigan_manager/prod_settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.21367522">
+              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="dev_settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/korrigan_manager/dev_settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="64" selection-start-line="5" selection-start-column="64" selection-end-line="5" selection-end-column="64" />
+              <caret line="10" column="21" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="prod_settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/korrigan_manager/prod_settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base_settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/korrigan_manager/base_settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="prod_wsgi.ini" pinned="false" current-in-tab="true">
+      <file leaf-file-name="prod_wsgi.ini" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/prod_wsgi.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21367522">
-              <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="61" selection-start-line="2" selection-start-column="61" selection-end-line="2" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -181,11 +181,11 @@
         <option value="$PROJECT_DIR$/templates/admin/ronde.html" />
         <option value="$PROJECT_DIR$/templates/admin/index.html" />
         <option value="$PROJECT_DIR$/korrigan_manager/dev_settings.py" />
-        <option value="$PROJECT_DIR$/korrigan_manager/prod_settings.py" />
         <option value="$PROJECT_DIR$/korrigan_manager/settings.py" />
         <option value="$PROJECT_DIR$/korrigan_manager/urls.py" />
         <option value="$PROJECT_DIR$/tournament/datas/coachs.csv" />
         <option value="$PROJECT_DIR$/prod_wsgi.ini" />
+        <option value="$PROJECT_DIR$/korrigan_manager/prod_settings.py" />
       </list>
     </option>
   </component>
@@ -632,38 +632,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tournament" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="korrigan_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="korrigan_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tournament" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="korrigan_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="korrigan_manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="korrigan_manager" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1071,16 +1039,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../kmng_venv/lib/python3.5/site-packages/django/contrib/admin/views/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.518518">
-          <caret line="295" column="56" selection-start-line="295" selection-start-column="56" selection-end-line="295" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../kmng_venv/lib/python3.5/site-packages/django/contrib/admin/templates/admin/app_index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.5">
@@ -1389,22 +1347,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/korrigan_manager/dev_settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="64" selection-start-line="5" selection-start-column="64" selection-end-line="5" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/korrigan_manager/prod_settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/korrigan_manager/base_settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1465,8 +1407,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/prod_wsgi.ini">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="61" selection-start-line="2" selection-start-column="61" selection-end-line="2" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/korrigan_manager/dev_settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/korrigan_manager/prod_settings.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21367522">
-          <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
           <folding />
         </state>
       </provider>

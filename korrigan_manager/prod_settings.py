@@ -7,7 +7,7 @@ FRONT_DOMAIN = "localhost:5555"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "BBClub",
+        "NAME": "kmng",
         "USER": "root",
         "PASSWORD": os.environ.get('DB_PWD',''),
         "HOST": "localhost",   # Or an IP Address that your DB is hosted on
