@@ -8,5 +8,4 @@ from tournament.admin import MyAdminSite
 urlpatterns = [
     url(r'^', include('tournament.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    #url(r'^admin/ronde_1',ronde1,name='admin_ronde1'),
 ]
