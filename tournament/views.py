@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from tournament.models import Coach,Match,TeamReport
 from django.template import loader
-from tournament.core.drawer import draw_round_1,draw_next_round
+from tournament.core.drawer import draw_round_1,draw_next_round,cancel_ronde
 import xlwt
 from django.shortcuts import render, redirect
 
@@ -20,30 +20,69 @@ def match(request,match_id):
     return HttpResponse(resp)
 
 def admin_view_ronde(request,ronde_id):
-    # on choppe la liste de match de ronde 1
-    match_list = Match.objects.filter(ronde=1)
+    # on choppe la liste de match de ronde
+    match_list = Match.objects.filter(ronde=int(ronde_id))
     context = {
         'match_list': match_list,
     }
-    return render(request, 'admin/ronde_1.html', context)
+    return render(request, 'admin/ronde.html', context)
 
 """
 """
-def draw_ronde(request,ronde_id,cancel_ronde):
+def draw_ronde(request,ronde_id,cancel_ronde_id):
     ronde_num = int(ronde_id)
 
-    if cancel_ronde:
-        cancel_ronde(ronde_num)
+    if cancel_ronde_id:
+        cancel_ronde(cancel_ronde_id)
 
     if ronde_num == 1:
         draw_round_1()
     else:
         draw_next_round(ronde_num)
-    return redirect('index')
+
+    return HttpResponse()
+
+"""
+ Export le classement général sous format excel
+"""
+def export_xls_ranking(request):
+    filename = 'korrigan_8_classement_général.xls'
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename='+filename
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('classement_général')
+
+    # Sheet header, first row
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['Place','Coach','Ligue','points','V','N','D','TD','Sorties','Passes','Interceptions','agressions']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    # Sheet body, remaining rows
+    font_style = xlwt.XFStyle()
+
+    rows = Coach.objects.all().values_list('name','league__name','points','nb_win','nb_draw','nb_lose','TD_tot','cas_tot','passes_tot','interception_tot','aggros_tot')
+    for row in rows:
+        row_num += 1
+
+        for col_num in range(len(row)+1):
+            if col_num == 0:
+                ws.write(row_num, col_num, row_num, font_style)
+                continue
+            ws.write(row_num, col_num, row[col_num-1], font_style)
+
+    wb.save(response)
+    return response
 
 def export_xls_ronde(request,ronde_id):
     ronde_name = "ronde_"+repr(ronde_id)
-    filename = '"korrigan_ronde_'+repr(ronde_id)+'.xls"'
+    filename = 'korrigan_ronde_'+repr(ronde_id)+'.xls'
     response = HttpResponse(content_type='application/ms-excel')
     response['Content-Disposition'] = 'attachment; filename='+filename
 

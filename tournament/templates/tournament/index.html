@@ -49,6 +49,9 @@
         <div class="row">
             <div class="large-12 columns">
                 <div class="panel">
+                    <div class="panel-title match-report-title">
+                            <strong>Classement Général Bowl des korrigans 8</strong>
+                    </div>
                     <div class="panel-content">
                         <div class="row columns">
                         </div>
@@ -77,6 +80,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="roster">
+                                        {% if coach_list %}
                                         {% for coach in coach_list %}
                                             <tr>
                                                 <td>1</td>
@@ -93,6 +97,11 @@
                                                 <td>{{ coach.aggros_tot }}</td>
                                             </tr>
                                         {% endfor %}
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="12" align="center">pas de coach en base de données</td>
+                                            </tr>
+                                        {% endif %}
                                         </tbody>
                                     </table> 
                                 </div>

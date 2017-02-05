@@ -113,7 +113,7 @@ def draw_next_round(ronde):
         foe = Coach.objects.filter(points__lte=coach.points)\
                             .exclude(league=coach.league)\
                             .exclude(Q(id__in=[f.id for f in foe_list]))\
-                            .order_by('-points').first()
+                            .order_by('-points','name').first()
 
         #si on en trouve pas, on prend deux joueurs de la même ligue
         if foe == None:

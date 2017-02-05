@@ -20,6 +20,7 @@ class Coach(models.Model):
     points = models.PositiveSmallIntegerField(null=True,verbose_name="Points")
 
     class Meta:
+        verbose_name = "Classement"
         ordering = ('-points',)
 
     def update_stats(self):

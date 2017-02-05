@@ -4,6 +4,7 @@
 {% block extrastyle %}
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/btn.css" %}" />
 {% endblock %}
 
 {% block coltype %}colMS{% endblock %}
@@ -14,6 +15,7 @@
 
 {% block extrahead %}
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -58,33 +60,33 @@
             <tr class="model-">
                 <th scope="row"><a href="{% url 'admin_view_ronde' ronde_id=1%}">ronde 1</a></th>
                 {% if ronde_1_drawn %}
-                    <td><a href="{% url 'admin_view_ronde' ronde_id=1%}" class="viewsitelink">{% trans 'Consulter' %}</a></td>
-                    <td><a href="{% url 'export_xls_ronde' ronde_id=1%}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
-                    {% if ronde_not_started %}
-                    <td><a href="" class="viewsitelink" id="draw_ronde_1">{% trans 'Re-Tirer' %}</a></td>
+                    <td><a href="{% url 'admin_view_ronde' ronde_id=1%}"><button class="btn">{% trans 'Consulter' %}</button></a></td>
+                    <td><a href="{% url 'export_xls_ronde' ronde_id=1%}"><button class="btn">{% trans 'Télécharger' %}</button></a></td>
+                    {% if ronde_1_not_started %}
+                        <td><button class="btn" id="draw_ronde" draw_url="{% url 'admin_draw_ronde' ronde_id="1" cancel_ronde_id="1" %}">{% trans 'Re-Tirer' %}</button></td>
                     {% else %}
-                    <td></td>
+                        <td></td>
                     {% endif %}
                 {% else %}
                     <td></td>
                     <td></td>
-                    <td><a href="" class="viewsitelink" id="draw_ronde_1">{% trans 'Tirer' %}</a></td>
+                    <td><button class="btn" id="draw_ronde"  draw_url="{% url 'admin_draw_ronde' ronde_id="1" cancel_ronde_id="0" %}">{% trans 'Tirer' %}</button></td>
                 {% endif %}
             </tr>
             <tr class="model-">
-                <th scope="row"><a href="">ronde 2</a></th>
+                <th scope="row"><a href="{% url 'admin_view_ronde' ronde_id=2%}">ronde 2</a></th>
                  {% if ronde_2_drawn %}
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Consulter' %}</a></td>
-                    <td><a href="{% url 'export_xls_ronde' ronde_id=2%}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
-                     {% if ronde_not_started %}
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Re-Tirer' %}</a></td>
+                    <td><a href="{% url 'admin_view_ronde' ronde_id=2%}"><button class="btn">{% trans 'Consulter' %}</button></a></td>
+                    <td><a href="{% url 'export_xls_ronde' ronde_id=2%}"><button class="btn">{% trans 'Télécharger' %}</button></a></td>
+                    {% if ronde_2_not_started %}
+                    <td><button class="btn" id="draw_ronde" draw_url="{% url 'admin_draw_ronde' ronde_id="2" cancel_ronde_id="2" %}">{% trans 'Re-Tirer' %}</button></td>
                     {% else %}
                     <td></td>
                     {% endif %}
                 {% elif ronde_1_drawn and ronde_finished %}
                     <td></td>
                     <td></td>
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Tirer' %}</a></td>
+                    <td><button class="btn" id="draw_ronde"  draw_url="{% url 'admin_draw_ronde' ronde_id="2" cancel_ronde_id="0" %}">{% trans 'Tirer' %}</button></td>
                 {% else %}
                     <td></td>
                     <td></td>
@@ -92,19 +94,19 @@
                 {% endif %}
             </tr>
             <tr class="model-">
-                <th scope="row"><a href="">ronde 3</a></th>
+                <th scope="row"><a href="{% url 'admin_view_ronde' ronde_id=3%}">ronde 3</a></th>
                 {% if ronde_3_drawn %}
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Consulter' %}</a></td>
-                    <td><a href="{% url 'export_xls_ronde' ronde_id=3%}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
-                    {% if ronde_not_started %}
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Re-Tirer' %}</a></td>
+                    <td><a href="{% url 'admin_view_ronde' ronde_id=3%}"><button class="btn">{% trans 'Consulter' %}</button></a></td>
+                    <td><a href="{% url 'export_xls_ronde' ronde_id=3%}"><button class="btn">{% trans 'Télécharger' %}</button></a></td>
+                     {% if ronde_not_started %}
+                    <td><button class="btn" id="draw_ronde" draw_url="{% url 'admin_draw_ronde' ronde_id="3" cancel_ronde_id="3" %}">{% trans 'Re-Tirer' %}</button></td>
                     {% else %}
                     <td></td>
                     {% endif %}
                 {% elif ronde_2_drawn and ronde_finished %}
                     <td></td>
                     <td></td>
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Tirer' %}</a></td>
+                    <td><button class="btn" id="draw_ronde"  draw_url="{% url 'admin_draw_ronde' ronde_id="3" cancel_ronde_id="0" %}">{% trans 'Tirer' %}</button></td>
                 {% else %}
                     <td></td>
                     <td></td>
@@ -112,19 +114,19 @@
                 {% endif %}
             </tr>
             <tr class="model-">
-                <th scope="row"><a href="">ronde 4</a></th>
+                <th scope="row"><a href="{% url 'admin_view_ronde' ronde_id=4%}">ronde 4</a></th>
                 {% if ronde_4_drawn %}
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Consulter' %}</a></td>
-                    <td><a href="{% url 'export_xls_ronde' ronde_id=4%}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
-                    {% if ronde_not_started %}
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Re-Tirer' %}</a></td>
+                    <td><a href="{% url 'admin_view_ronde' ronde_id=4%}"><button class="btn">{% trans 'Consulter' %}</button></a></td>
+                    <td><a href="{% url 'export_xls_ronde' ronde_id=4%}"><button class="btn">{% trans 'Télécharger' %}</button></a></td>
+                     {% if ronde_not_started %}
+                    <td><button class="btn" id="draw_ronde" draw_url="{% url 'admin_draw_ronde' ronde_id="4" cancel_ronde_id="4" %}">{% trans 'Re-Tirer' %}</button></td>
                     {% else %}
                     <td></td>
                     {% endif %}
                 {% elif ronde_3_drawn and ronde_finished %}
                     <td></td>
                     <td></td>
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Tirer' %}</a></td>
+                    <td><button class="btn" id="draw_ronde"  draw_url="{% url 'admin_draw_ronde' ronde_id="4" cancel_ronde_id="0" %}">{% trans 'Tirer' %}</button></td>
                 {% else %}
                     <td></td>
                     <td></td>
@@ -132,20 +134,19 @@
                 {% endif %}
             </tr>
             <tr class="model-">
-                <th scope="row"><a href="">ronde 5</a></th>
+                <th scope="row"><a href="{% url 'admin_view_ronde' ronde_id=5%}">ronde 5</a></th>
                 {% if ronde_5_drawn %}
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Consulter' %}</a></td>
-                    <td><a href="{% url 'export_xls_ronde' ronde_id=5%}" class="viewsitelink">{% trans 'Télécharger' %}</a></td>
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Supprimer' %}</a></td>
-                    {% if ronde_not_started %}
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Re-Tirer' %}</a></td>
+                    <td><a href="{% url 'admin_view_ronde' ronde_id=5%}"><button class="btn">{% trans 'Consulter' %}</button></a></td>
+                    <td><a href="{% url 'export_xls_ronde' ronde_id=5%}"><button class="btn">{% trans 'Télécharger' %}</button></a></td>
+                     {% if ronde_not_started %}
+                    <td><button class="btn" id="draw_ronde" draw_url="{% url 'admin_draw_ronde' ronde_id="5" cancel_ronde_id="5" %}">{% trans 'Re-Tirer' %}</button></td>
                     {% else %}
                     <td></td>
                     {% endif %}
                 {% elif ronde_4_drawn and ronde_finished %}
                     <td></td>
                     <td></td>
-                    <td><a href="{{ model.add_url }}" class="viewsitelink">{% trans 'Tirer' %}</a></td>
+                    <td><button class="btn" id="draw_ronde"  draw_url="{% url 'admin_draw_ronde' ronde_id="5" cancel_ronde_id="0" %}">{% trans 'Tirer' %}</button></td>
                 {% else %}
                     <td></td>
                     <td></td>
@@ -157,6 +158,7 @@
 {% else %}
     <p>{% trans "You don't have permission to edit anything." %}</p>
 {% endif %}
+<a href="{% url 'export_xls_ranking' %}"><button class="btn">{% trans 'Télécharger le classement général' %}</button></a>
 </div>
 {% endblock %}
 
@@ -195,9 +197,14 @@
     <script>
     $(document).ready()
     $(function(){
-         $('#draw_ronde_1').click( function(){
+         $('#draw_ronde').click( function(){
+             var link = $(this);
              $.ajax({
-                url: '{% url "admin_draw_ronde"  ronde_id=1 %}',
+                url: link.attr("draw_url"),
+                 success: function(data) {
+                     alert("ronde mise à jour !!")
+                     window.location.reload(); // This is not jQuery but simple plain ol' JS
+                 }
               });
          });
     });

@@ -84,6 +84,7 @@ class MyAdminSite(AdminSite):
 
         #la ronde est commencé si le nombre de rapport non remplis est inférieur au nombre de coach
         ronde_not_started = TeamReport.objects.filter(TD__isnull=True).count() == Coach.objects.all().count()
+        ronde_1_not_started = TeamReport.objects.filter(match__ronde=1,TD__isnull=True).count() == Coach.objects.all().count()
         ronde_2_drawn = TeamReport.objects.filter(match__ronde=2).count() > 0
         ronde_3_drawn = TeamReport.objects.filter(match__ronde=3).count() > 0
         ronde_4_drawn = TeamReport.objects.filter(match__ronde=4).count() > 0
@@ -96,7 +97,8 @@ class MyAdminSite(AdminSite):
             'ronde_4_drawn':ronde_4_drawn,
             'ronde_5_drawn':ronde_5_drawn,
             'ronde_finished':ronde_is_finished,
-            'ronde_not_started':ronde_not_started
+            'ronde_not_started':ronde_not_started,
+            'ronde_1_not_started':ronde_1_not_started
         }
         return super().index(request, extra_context=context)
 
