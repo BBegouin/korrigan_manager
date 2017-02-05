@@ -2,7 +2,8 @@ from korrigan_manager.base_settings import *
 
 DEBUG = False
 
-FRONT_DOMAIN = "localhost:5555"
+# Domains for public site
+ALLOWED_HOSTS = ["korrigan.bloodbowlclub.com"]
 
 DATABASES = {
     "default": {
