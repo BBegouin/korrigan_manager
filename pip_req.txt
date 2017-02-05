@@ -1,0 +1,4 @@
+Django==1.10.5
+django-admin-list-filter-dropdown==1.0.0
+mysqlclient==1.3.9
+xlwt==1.2.0
