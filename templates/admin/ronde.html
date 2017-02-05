@@ -7,6 +7,9 @@
 
 {% endblock %}
 
+{% block extrahead %}
+{% endblock %}
+
 {% block content %}
 <div id="content-main">
 {% if match_list %}
@@ -43,7 +46,7 @@
     </table>
     </div>
 {% else %}
-    <button> Tirer la ronde </button>
+    <td>La ronde n'est pas encore tirée</td>
 {% endif %}
 {% endblock %}
 

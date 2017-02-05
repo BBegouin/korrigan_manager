@@ -6,14 +6,27 @@ from tournament.core.drawer import draw_round_1,draw_next_round,cancel_ronde
 import xlwt
 from django.shortcuts import render, redirect
 
-
-#permet de lister les matchs par ronde
+#
+# Affiche la page d'accueil du front
+#
 def index(request):
     coach_list = Coach.objects.all().order_by('-points')
     context = {
         'coach_list': coach_list,
     }
     return render(request, 'tournament/index.html', context)
+
+#
+# Affiche les pages de ronde du front
+#
+def view_ronde(request,ronde_id):
+    #on selectionne tous les matchs de la ronde
+    match_list = Match.objects.filter(ronde=int(ronde_id))
+    context = {
+        'match_list': match_list,
+        'ronde_id':ronde_id
+    }
+    return render(request, 'tournament/ronde.html', context)
 
 def match(request,match_id):
     resp = "détail du match %s"%match_id
@@ -24,6 +37,7 @@ def admin_view_ronde(request,ronde_id):
     match_list = Match.objects.filter(ronde=int(ronde_id))
     context = {
         'match_list': match_list,
+        'ronde_id':ronde_id
     }
     return render(request, 'admin/ronde.html', context)
 

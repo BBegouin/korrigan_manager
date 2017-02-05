@@ -15,7 +15,6 @@
 
 {% block extrahead %}
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -78,11 +77,7 @@
                  {% if ronde_2_drawn %}
                     <td><a href="{% url 'admin_view_ronde' ronde_id=2%}"><button class="btn">{% trans 'Consulter' %}</button></a></td>
                     <td><a href="{% url 'export_xls_ronde' ronde_id=2%}"><button class="btn">{% trans 'Télécharger' %}</button></a></td>
-                    {% if ronde_2_not_started %}
-                    <td><button class="btn" id="draw_ronde" draw_url="{% url 'admin_draw_ronde' ronde_id="2" cancel_ronde_id="2" %}">{% trans 'Re-Tirer' %}</button></td>
-                    {% else %}
                     <td></td>
-                    {% endif %}
                 {% elif ronde_1_drawn and ronde_finished %}
                     <td></td>
                     <td></td>
@@ -98,11 +93,7 @@
                 {% if ronde_3_drawn %}
                     <td><a href="{% url 'admin_view_ronde' ronde_id=3%}"><button class="btn">{% trans 'Consulter' %}</button></a></td>
                     <td><a href="{% url 'export_xls_ronde' ronde_id=3%}"><button class="btn">{% trans 'Télécharger' %}</button></a></td>
-                     {% if ronde_not_started %}
-                    <td><button class="btn" id="draw_ronde" draw_url="{% url 'admin_draw_ronde' ronde_id="3" cancel_ronde_id="3" %}">{% trans 'Re-Tirer' %}</button></td>
-                    {% else %}
                     <td></td>
-                    {% endif %}
                 {% elif ronde_2_drawn and ronde_finished %}
                     <td></td>
                     <td></td>
@@ -118,11 +109,7 @@
                 {% if ronde_4_drawn %}
                     <td><a href="{% url 'admin_view_ronde' ronde_id=4%}"><button class="btn">{% trans 'Consulter' %}</button></a></td>
                     <td><a href="{% url 'export_xls_ronde' ronde_id=4%}"><button class="btn">{% trans 'Télécharger' %}</button></a></td>
-                     {% if ronde_not_started %}
-                    <td><button class="btn" id="draw_ronde" draw_url="{% url 'admin_draw_ronde' ronde_id="4" cancel_ronde_id="4" %}">{% trans 'Re-Tirer' %}</button></td>
-                    {% else %}
                     <td></td>
-                    {% endif %}
                 {% elif ronde_3_drawn and ronde_finished %}
                     <td></td>
                     <td></td>
@@ -138,11 +125,7 @@
                 {% if ronde_5_drawn %}
                     <td><a href="{% url 'admin_view_ronde' ronde_id=5%}"><button class="btn">{% trans 'Consulter' %}</button></a></td>
                     <td><a href="{% url 'export_xls_ronde' ronde_id=5%}"><button class="btn">{% trans 'Télécharger' %}</button></a></td>
-                     {% if ronde_not_started %}
-                    <td><button class="btn" id="draw_ronde" draw_url="{% url 'admin_draw_ronde' ronde_id="5" cancel_ronde_id="5" %}">{% trans 'Re-Tirer' %}</button></td>
-                    {% else %}
                     <td></td>
-                    {% endif %}
                 {% elif ronde_4_drawn and ronde_finished %}
                     <td></td>
                     <td></td>
