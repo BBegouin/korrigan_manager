@@ -86,15 +86,51 @@
                                                 <td>1</td>
                                                 <td>{{ coach.name }}</td>
                                                 <td>{{ coach.league.name }}</td>
+                                                {% if coach.points is not None %}
                                                 <td>{{ coach.points }}</td>
+                                                {% else %}
+                                                <td>-</td>
+                                                {% endif %}
+                                                {% if coach.nb_win is not None %}
                                                 <td>{{ coach.nb_win }}</td>
+                                                {% else %}
+                                                <td>-</td>
+                                                {% endif %}
+                                                {% if coach.nb_draw is not None %}
                                                 <td>{{ coach.nb_draw }}</td>
+                                                {% else %}
+                                                <td>-</td>
+                                                {% endif %}
+                                                {% if coach.nb_lose is not None %}
                                                 <td>{{ coach.nb_lose }}</td>
+                                                {% else %}
+                                                <td>-</td>
+                                                {% endif %}
+                                                {% if coach.TD_tot is not None %}
                                                 <td>{{ coach.TD_tot }}</td>
+                                                {% else %}
+                                                <td>-</td>
+                                                {% endif %}
+                                                {% if coach.cas_tot is not None %}
                                                 <td>{{ coach.cas_tot }}</td>
+                                                {% else %}
+                                                <td>-</td>
+                                                {% endif %}
+                                                {% if coach.interception_tot is not None %}
                                                 <td>{{ coach.interception_tot }}</td>
+                                                {% else %}
+                                                <td>-</td>
+                                                {% endif %}
+                                                {% if coach.passes_tot is not None %}
                                                 <td>{{ coach.passes_tot }}</td>
+                                                {% else %}
+                                                <td>-</td>
+                                                {% endif %}
+                                                {% if coach.aggros_tot is not None %}
                                                 <td>{{ coach.aggros_tot }}</td>
+                                                {% else %}
+                                                <td>-</td>
+                                                {% endif %}
                                             </tr>
                                         {% endfor %}
                                         {% else %}
