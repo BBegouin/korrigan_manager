@@ -85,16 +85,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base_settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/korrigan_manager/base_settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.11111">
-              <caret line="127" column="23" selection-start-line="127" selection-start-column="23" selection-end-line="127" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="core_tests.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tournament/tests/core_tests.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -105,14 +95,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="0012_auto_20170205_0918.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="0012_auto_20170205_0918.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tournament/migrations/0012_auto_20170205_0918.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74285716">
-              <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="28" selection-end-column="15" />
               <folding>
                 <element signature="e#73#112#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="init.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tournament/management/commands/init.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8142857">
+              <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -157,7 +157,6 @@
         <option value="$PROJECT_DIR$/tournament/migrations/0003_auto_20170131_0951.py" />
         <option value="$PROJECT_DIR$/tournament/datas/coach.csv" />
         <option value="$PROJECT_DIR$/tournament/datas/ligues.csv" />
-        <option value="$PROJECT_DIR$/tournament/management/commands/init.py" />
         <option value="$PROJECT_DIR$/tournament/core/Drawer.py" />
         <option value="$PROJECT_DIR$/tournament/management/commands/draw.py" />
         <option value="$PROJECT_DIR$/tournament/migrations/0002_auto_20170131_0931.py" />
@@ -193,6 +192,7 @@
         <option value="$PROJECT_DIR$/tournament/models.py" />
         <option value="$PROJECT_DIR$/tournament/tests/core_tests.py" />
         <option value="$PROJECT_DIR$/tournament/migrations/0012_auto_20170205_0918.py" />
+        <option value="$PROJECT_DIR$/tournament/management/commands/init.py" />
       </list>
     </option>
   </component>
@@ -764,13 +764,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/common.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="126" column="18" selection-start-line="126" selection-start-column="18" selection-end-line="126" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../kmng_venv/lib/python3.5/site-packages/django/contrib/admin/static/admin/css/dashboard.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.185185">
@@ -1163,11 +1156,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tournament/migrations/0012_auto_20170205_0918.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74285716">
-          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="28" selection-end-column="15" />
           <folding>
             <element signature="e#73#112#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tournament/management/commands/init.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8142857">
+          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>

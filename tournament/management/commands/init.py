@@ -23,6 +23,14 @@ class Command(BaseCommand):
              is_staff=True
         )
         admin.save()
+        Fab = User(
+            username='Legalodec',
+            email='',
+            password=make_password('korrigan'),
+            is_superuser=True,
+            is_staff=True
+        )
+        Fab.save()
 
         # chargement des ligues
         with open(data_dir+'/ligues.csv', newline='') as csvfile:
