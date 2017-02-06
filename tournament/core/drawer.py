@@ -12,6 +12,11 @@ def draw_round_1():
     print ("===================================")
     print ("========== Tirage ronde 1 =========")
     print ("===================================")
+
+    #avant toute chose si on arrive dans cette méthode et qu'une ronde 1 existe déjà, on sort
+    if TeamReport.objects.filter(match__ronde=1).count() != 0:
+        return
+
     # tirage des rondes
     # si il s'agit de la ronde 1 :
     # pour chaque adversaire on tire un adversaire au sort sachant que :
@@ -94,6 +99,11 @@ def draw_next_round(ronde):
     print ("===================================")
     print ("====== Tirage ronde suivante ======")
     print ("===================================")
+
+    #avant toute chose si on arrive dans cette méthode et qu'une ronde "ronde" existe déjà, on sort
+    if TeamReport.objects.filter(match__ronde=ronde).count() != 0:
+        return
+
     #on choppe la liste des coachs, ordonnée par point
     coach_ranking = Coach.objects.all().order_by('-points')
 
