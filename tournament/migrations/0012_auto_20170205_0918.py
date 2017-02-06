@@ -19,6 +19,14 @@ def create_admin_user(apps, schema_editor):
          is_staff=True
      )
      admin.save()
+     Fab = User(
+         username='Legalodec',
+         email='',
+         password=make_password('korrigan'),
+         is_superuser=True,
+         is_staff=True
+     )
+     Fab.save()
 
 data_dir = getattr(settings, "PROJECT_ROOT", None)+'/tournament/datas'
 
