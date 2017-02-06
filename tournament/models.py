@@ -2,6 +2,7 @@ import django
 from django.db import models
 from django.contrib import admin
 from django.db.models import Sum,Count,Case,When
+from django.db.models import Q
 
 # Create your models here.
 
@@ -65,18 +66,72 @@ class League(models.Model):
 
     # Calcul les points de ligue
     def update_points(self):
-        pass
+
+        print("update "+self.name)
+
+        #si la ligue n'a pas de tête de série ele ne joue pas pour le challenge inter-ligue
+        if Coach.objects.filter(head=True,league=self).count() == 0:
+            return
+
+        pts_count = 0
         # on prend les 4 meilleurs joueurs de la ligue
         # on additionne leurs points, c'est les points de base de la ligue
-        # on regarde les performances de la tête de série,
-        # pour chaque match, classé par id croissant :
-        # est-ce qu'elle a perdu ?
-        # si oui on sort
-        # si non, est-ce qu'elle a gagné ?
-        # si oui on ajoute le bonus victoire
+        best4 = Coach.objects.filter(league=self).order_by('-points')[:4].aggregate(pts=Sum('points'))
+        pts_count += best4['pts']
 
-        # on prend tous les matchs victorieux qui ont été joués contre des têtes de série,
-        # et pour chaque on ajoute le bonus de kill de tête de série
+
+        # on regarde les performances de la tête de série,
+        head = Coach.objects.get(head=True,league=self)
+        # pour chaque match, classé par id croissant :
+        head_match_list = Match.objects.filter(team_reports__coach = head).order_by('id')
+
+        head_bonus_point = 0
+        for match in head_match_list:
+            report = match.team_reports.get(coach=head)
+            #au premier match perdu, on sort, le bonus s'arrête
+            if report.is_loser:
+                break
+
+            if report.is_winner:
+                head_bonus_point += 100
+
+
+        pts_count += head_bonus_point
+
+        # on liste les têtes de séries rencontrées par la ligue :
+        # - on prend tous les rapports de match, donc le match parent contient un rapport concernant la ligue
+        # - on exclus de cet ensemble les matchs joués par les coachs de la ligue non tête de série,
+        # on obtient l'ensemble des rapports de matchs des adversaires,
+        # que l'on filtre pour ne garder que les rapports de tête de série
+        # que l'on filtre pour ne garder que les rapports perdants
+
+        #on choppe toutes les têtes de séries, hormis celle de la ligue
+        heads = Coach.objects.filter(head=True).exclude(league=self)
+        #on choppe tous les matchs des têtes de série contre la ligue
+        head_matchs = Match.objects.filter(Q(team_reports__coach__id__in=[h.id for h in heads]))\
+                        .filter(team_reports__coach__league=self)
+
+        #dans tous ces matchs il faut trouver les matchs gagnés par la ligue
+        head_lose_reports = TeamReport.objects.filter(Q(match__id__in=[m.id for m in head_matchs]))\
+                            .exclude(coach__league=self)\
+                            .filter(is_loser=True)
+
+        # pour chacun de ces rapports, si il exsite un rapport de défaite de la tête de série adverse plus récent,
+        # alors les points ne doivent pas être attribués
+        kill_head_bonus = 0
+        for TR in head_lose_reports:
+
+            first_lose = TeamReport.objects.filter(coach=TR.coach,id__lt=TR.id,is_loser=True).count()
+
+            # si on ne trouve pas de rapport de défaites antérieurs, on attribue les points bonus
+            if first_lose is 0:
+                kill_head_bonus += 200
+
+        pts_count += kill_head_bonus
+
+        self.points = pts_count
+        self.save()
+
 
 
 

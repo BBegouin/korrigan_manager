@@ -45,7 +45,7 @@ class TeamReportPageAdmin(admin.ModelAdmin):
                     'points']
 
     list_editable = ('TD','sorties','passes','interceptions','aggros')
-    list_filter = ('match__ronde',('match__table', DropdownFilter),)
+    list_filter = ('match__ronde',('match__table', DropdownFilter),('coach__league__name', DropdownFilter),)
 
     search_fields = ['coach__name','match__ronde']
     list_per_page = 10
@@ -55,8 +55,15 @@ class TeamReportPageAdmin(admin.ModelAdmin):
         #on choppe le rapport de match de l'adversaire, si il a été rempli on mets à jour les points
         foe_tr = obj.match.team_reports.exclude(coach=obj.coach).first()
         if foe_tr.TD is not None:
+            #on met à jour les deux rapports
             obj.update_points()
             foe_tr.update_points()
+            #on met à jour les stats des coachs
+            obj.coach.update_stats()
+            foe_tr.coach.update_stats()
+            #on met à jour les stats des ligues
+            obj.coach.league.update_points()
+            foe_tr.coach.league.update_points()
         obj.save()
 
 

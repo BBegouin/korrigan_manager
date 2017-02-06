@@ -12,14 +12,6 @@ from tournament.models import TeamReport
 
 data_dir = getattr(settings, "PROJECT_ROOT", None)+'/tournament/datas'
 
-def shuffled_masters_series():
-    coaches = Coach.objects.filter(head = True)
-    seed = random.randint(1, 10000)
-    return coaches.extra(select={'sort_key': 'RAND(%s)' % seed}).order_by('sort_key')
-
-
-
-
 class Command(BaseCommand):
     help = 'permet de complèter automatiquement une ronde à des fins de test : syntaxe "python manage.py complete_ronde 1"'
 
@@ -43,3 +35,4 @@ class Command(BaseCommand):
         for TR in TeamReport.objects.all():
             TR.update_points()
             TR.coach.update_stats()
+            TR.coach.league.update_points()

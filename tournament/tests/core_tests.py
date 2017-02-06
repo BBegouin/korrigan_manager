@@ -126,6 +126,164 @@ class CoreTest(TestCase):
         self.assertEqual(TeamReport.objects.filter(match__ronde=1).count(),Coach.objects.all().count())
         self.assertEqual(Match.objects.filter(ronde=1).count(),Coach.objects.all().count()/2)
 
+    def test_comput_league_points(self):
+        """
+         Cas de test :
+         - vérifier que les bonus de victoire internes sont bien attribués
+         - vérifier que les bonus de victoire internes s'arrêtent après la première défaite
+         - vérifier que les bonus de victoire externes s'appliquent
+         - vérifier que les bonus de victoire externes ne s'applique qu'une seule fois, à la première défaite
+
+        contexte de test :
+        - 3 ligues : L1, L2, L3
+        - 3 coachs par ligue : L1C1, L1C2, L1C3. Les C1 sont têtes de série
+
+        matchs
+        L1C1 - L2C2 : 1-0 => +100
+        L1C2 - L3C1 : 1-0 => +200
+
+        """
+        L1 = League(name="L1")
+        L1.save()
+
+        L2 = League(name="L2")
+        L2.save()
+
+        L3 = League(name="L3")
+        L3.save()
+
+        L1C1 = Coach(league=L1,head=True,name="L1C1")
+        L1C1.save()
+        L1C2 = Coach(league=L1,head=False,name="L1C2")
+        L1C2.save()
+
+        L2C1 = Coach(league=L2,head=True,name="L2C1")
+        L2C1.save()
+        L2C2 = Coach(league=L2,head=False,name="L2C2")
+        L2C2.save()
+
+        L3C1 = Coach(league=L3,head=True,name="L3C1")
+        L3C1.save()
+        L3C2 = Coach(league=L3,head=False,name="L3C2")
+        L3C2.save()
+
+        match_L1C1_L2C2 = Match(ronde=1,table=1)
+        match_L1C1_L2C2.save()
+
+        TR_L1C1_1 = TeamReport(coach = L1C1,
+                               match = match_L1C1_L2C2,
+                               TD=1,
+                               sorties=0,
+                               passes=0,
+                               interceptions=0,
+                               aggros=0)
+        TR_L1C1_1.save()
+        TR_L2C2_1 = TeamReport(coach = L2C2,
+                               match = match_L1C1_L2C2,
+                               TD=0,
+                               sorties=0,
+                               passes=0,
+                               interceptions=0,
+                               aggros=0)
+        TR_L2C2_1.save()
+
+        match_L2C1_L1C2 = Match(ronde=1,table=2)
+        match_L2C1_L1C2.save()
+
+        TR_L1C2_2 = TeamReport(coach = L1C2,
+                               match = match_L2C1_L1C2,
+                               TD=1,
+                               sorties=0,
+                               passes=0,
+                               interceptions=0,
+                               aggros=0)
+        TR_L1C2_2.save()
+        TR_L2C1_2 = TeamReport(coach = L2C1,
+                               match = match_L2C1_L1C2,
+                               TD=0,
+                               sorties=0,
+                               passes=0,
+                               interceptions=0,
+                               aggros=0)
+        TR_L2C1_2.save()
+
+        # mise à jour des points des TR
+        TR_L1C1_1.update_points()
+        TR_L2C2_1.update_points()
+        TR_L1C2_2.update_points()
+        TR_L2C1_2.update_points()
+
+        # mise à jour des points coachs
+        L1C1.update_stats()
+        L1C2.update_stats()
+        L2C1.update_stats()
+        L2C2.update_stats()
+
+        # mise à jour les ligues
+        L1.update_points()
+        L2.update_points()
+
+        #la ligue 1 devrait avoir :
+        # - 6006 points de victoires
+        # - 100 points bonus tête
+        # - 200 points bonus kill tête
+        self.assertEqual(L1.points,6306)
+
+        #la ligue 2 devrait avoir :
+        # - 0 points de victoires
+        # - 0 pts bonus tête
+        # - 0 pts bonus kill tête
+        self.assertEqual(L2.points,0)
+
+        #
+        # Deuxième ronde
+        # la tête de série de ligue 1 va perdre contre l'ancienne tête de série 2
+        #
+
+        match_L1C1_L2C1 = Match(ronde=2,table=1)
+        match_L1C1_L2C1.save()
+
+        TR_L1C1_3 = TeamReport(coach = L1C1,
+                               match = match_L1C1_L2C1,
+                               TD=0,
+                               sorties=0,
+                               passes=0,
+                               interceptions=0,
+                               aggros=0)
+        TR_L1C1_3.save()
+        TR_L2C1_3 = TeamReport(coach = L2C1,
+                               match = match_L1C1_L2C1,
+                               TD=1,
+                               sorties=0,
+                               passes=0,
+                               interceptions=0,
+                               aggros=0)
+        TR_L2C1_3.save()
+
+        # mise à jour des points des TR
+        TR_L1C1_3.update_points()
+        TR_L2C1_3.update_points()
+
+        # mise à jour des points coachs
+        L1C1.update_stats()
+        L2C1.update_stats()
+
+        # mise à jour les ligues
+        L1.update_points()
+        L2.update_points()
+
+            #la ligue 1 devrait avoir :
+        # - 6006 points de victoires
+        # - 100 points bonus tête
+        # - 200 points bonus kill tête
+        self.assertEqual(L1.points,6306)
+
+        #la ligue 2 devrait avoir :
+        # - 3003 points de victoires
+        # - 0 pts bonus tête
+        # - 200 pts bonus kill tête
+        self.assertEqual(L2.points,3203)
+
 
 
 
