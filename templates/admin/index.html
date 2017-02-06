@@ -142,6 +142,9 @@
     <p>{% trans "You don't have permission to edit anything." %}</p>
 {% endif %}
 <a href="{% url 'export_xls_ranking' %}"><button class="btn">{% trans 'Télécharger le classement général' %}</button></a>
+    <br/>
+<br/>
+<a href="{% url 'export_xls_league_ranking' %}"><button class="btn">{% trans 'Télécharger le classement des ligues' %}</button></a>
 </div>
 {% endblock %}
 
