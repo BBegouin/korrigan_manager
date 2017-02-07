@@ -118,11 +118,19 @@ def draw_next_round(ronde):
             continue
 
         foe_list.append(coach)
+
+        # on liste les adversaires précédents
+
+        previous_matches = Match.objects.filter(team_reports__coach__id=coach.id)
+        previous_TR = TeamReport.objects.filter(Q(match__id__in=[m.id for m in previous_matches])).exclude(coach__id=coach.id)
+        previous_foes = Coach.objects.filter(Q(report__id__in=[tr.id for tr in previous_TR]))
         # celui qui à le nombre de point juste en dessous, qui n'est pas de la même ligue,
         # et qui n'est pas déjà apparié
+        # et contre lequel le coach n'a pas déjà joué
         foe = Coach.objects.filter(points__lte=coach.points)\
                             .exclude(league=coach.league)\
                             .exclude(Q(id__in=[f.id for f in foe_list]))\
+                            .exclude(Q(id__in=[f.id for f in previous_foes]))\
                             .order_by('-points','name').first()
 
         #si on en trouve pas, on prend deux joueurs de la même ligue

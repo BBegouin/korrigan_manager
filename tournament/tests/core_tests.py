@@ -65,6 +65,8 @@ class CoreTest(TestCase):
             print(c.name+" : "+repr(c.points)+" pts")
 
         draw_next_round(2)
+        draw_next_round(3)
+        draw_next_round(4)
 
         #on vérifie que chaque coach ne joue qu'une seule fois à la ronde 2
         # ==> On doit donc avoir le même nombre de rapport de match que de coachs
