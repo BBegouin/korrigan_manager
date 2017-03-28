@@ -5,6 +5,8 @@ DEBUG = False
 # Domains for public site
 ALLOWED_HOSTS = ["korrigan.bloodbowlclub.com"]
 
+SECRET_KEY = os.environ.get('KMNG_KEY',''),
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
